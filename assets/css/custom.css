@@ -1,0 +1,76 @@
+/* ==========================================================================
+   custom.css — your overrides on top of the Strata theme (main.css).
+   Put design changes HERE instead of editing main.css, so the theme stays
+   intact and your changes are easy to find.
+   ========================================================================== */
+
+:root {
+	--text: #1f1f1f;       /* body text (the original site forced black text) */
+	--tag-text: #c0392b;   /* skill tag color (original used red) */
+	--tag-bg: #f4f4f4;
+}
+
+#main { color: var(--text); }
+#main h2, #main h3 { color: var(--text); }
+
+.indent { text-indent: 40px; }
+
+/* Project cards */
+.work-item h3 a { color: inherit; text-decoration: underline; border-bottom: none; }
+.work-item h3 a:hover { color: var(--tag-text); }
+video { width: 100%; }
+
+/* Skill tags */
+.tags code { color: var(--tag-text); background: var(--tag-bg); margin: 0 0.25em 0.4em 0; display: inline-block; }
+
+/* Experience / project meta lines */
+.meta { color: #777; font-style: italic; margin-bottom: 0.75em; }
+.experience-item { margin-bottom: 2em; }
+
+/* Resume PDF viewer */
+.resume-embed { width: 100%; height: 85vh; border: 1px solid #ddd; }
+
+/* Responsive YouTube embed */
+.video-embed { position: relative; padding-top: 56.25%; margin-bottom: 2em; }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ---------- Placeholders: anything still to fill in shows up highlighted ---------- */
+.placeholder { background: #fff3b0; color: #7a5b00; padding: 0 0.2em; border-radius: 3px; }
+
+/* ---------- Skills ---------- */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16em, 1fr)); gap: 0 2em; }
+.skill-cat h3 { margin-bottom: 0.4em; }
+
+/* ---------- Project detail pages (bagatelle.html etc.) ---------- */
+.project-detail .lede { font-size: 1.1em; }
+.project-hero-meta, .Step-title { font-weight: bold; color: #555; margin-bottom: 0.4em; }
+.project-hero-meta { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8em; }
+.tags .tag, .tags span { display: inline-block; font-family: monospace; font-size: 0.85em; color: var(--tag-text);
+	background: var(--tag-bg); border-radius: 4px; padding: 0.1em 0.5em; margin: 0 0.25em 0.4em 0; }
+.project-detail h2 { margin-top: 1.5em; }
+
+.step { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-items: start; margin-bottom: 2.5em; }
+.step.step-multi { grid-template-columns: 3fr 2fr; }
+.step-media { display: grid; gap: 1em; }
+@media screen and (max-width: 980px) { .step, .step.step-multi { grid-template-columns: 1fr; } }
+
+figure { margin: 0 0 1em 0; }
+figure img { display: block; width: 100%; border-radius: 4px; }
+figcaption { font-size: 0.85em; color: #777; font-style: italic; margin-top: 0.4em; }
+
+/* Finished-product showcase: centered photo on a blurred copy of itself */
+.figure-showcase .showcase-frame { position: relative; overflow: hidden; border-radius: 4px; height: 32em; background: #111; }
+.figure-showcase .showcase-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px) brightness(0.7); transform: scale(1.1); }
+.figure-showcase .showcase-fg { position: relative; height: 100%; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; border-radius: 0; }
+
+.spec-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(10em, 1fr)); gap: 1em; border-top: 1px solid #ddd; padding-top: 1.5em; margin-top: 2em; }
+.spec-list dt { font-weight: bold; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.08em; color: #777; }
+.spec-list dd { margin: 0; }
+
+/* ---------- About Me page ---------- */
+.statement p { font-size: 1.05em; }
+.statement-rule { margin: 2.5em 0; }
+.era { margin-bottom: 2.5em; }
+.era-meta { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.08em; color: #777; margin-bottom: 0.2em; }
+
+#main strong, #main b { color: var(--text); }
