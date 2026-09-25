@@ -74,3 +74,64 @@ figcaption { font-size: 0.85em; color: #777; font-style: italic; margin-top: 0.4
 .era-meta { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.08em; color: #777; margin-bottom: 0.2em; }
 
 #main strong, #main b { color: var(--text); }
+
+/* ---------- Sidebar photo framing ----------
+   Zoom (130%) and focus point (85% from left, 55% from top) of images/bg.jpg.
+   Raise the first % to push further right, lower it to go left. */
+#header {
+	background-size: auto, 130%;
+	background-position: top left, 85% 55%;
+}
+
+/* ==========================================================================
+   About Me page (about.html): sidebar becomes a map + timeline ("journey")
+   ========================================================================== */
+body.journey-page #header {
+	background-image: url("images/overlay.png");   /* drop the lathe photo here so the map reads cleanly */
+	background-color: #1c1f22;
+	text-align: left;
+	padding: 3.5em 3em 2em 3em;
+	overflow-y: auto;
+}
+.journey-home { display: flex; align-items: center; gap: 0.9em; border: 0; color: #fff; margin-bottom: 2em; }
+.journey-home img { width: 3.2em; height: 3.2em; border-radius: 50%; object-fit: cover; }
+.journey-home span { display: flex; flex-direction: column; line-height: 1.35; }
+.journey-home strong { color: #fff; font-weight: 400; font-size: 1.1em; }
+.journey-home em { font-size: 0.8em; color: rgba(255,255,255,0.5); font-style: normal; }
+.journey-home:hover em { color: #49bf9d; }
+.journey-kicker { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7em; color: rgba(255,255,255,0.45); margin: 0 0 0.5em 0; }
+
+.journey-map { display: block; width: 100%; height: auto; margin-bottom: 1.5em; overflow: hidden; border-radius: 6px; background: rgba(0,0,0,0.15); }
+.journey-map .st { fill: rgba(255,255,255,0.04); stroke: rgba(255,255,255,0.18); stroke-width: 0.7; stroke-linejoin: round; }
+.journey-map .st-hl { fill: rgba(255,255,255,0.09); }
+.journey-map .seg { fill: none; stroke: rgba(255,255,255,0.22); stroke-width: 1.4; stroke-dasharray: 3 4; transition: stroke 0.5s, stroke-width 0.5s; }
+.journey-map .seg.done { stroke: #49bf9d; stroke-width: 2; stroke-dasharray: none; }
+.journey-map .pin .dot { fill: #1c1f22; stroke: rgba(255,255,255,0.6); stroke-width: 1.5; transition: fill 0.3s, stroke 0.3s; }
+.journey-map .pin .pulse { fill: #49bf9d; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.journey-map .pin text { fill: rgba(255,255,255,0.55); font-size: 10.5px; font-family: inherit; transition: fill 0.3s; }
+.journey-map .pin.visited .dot { stroke: #49bf9d; }
+.journey-map .pin.active .dot { fill: #49bf9d; stroke: #fff; }
+.journey-map .pin.active text { fill: #fff; }
+.journey-map .pin.active .pulse { animation: journey-pulse 1.8s ease-out infinite; }
+@keyframes journey-pulse { 0% { opacity: 0.6; transform: scale(0.5); } 100% { opacity: 0; transform: scale(2.2); } }
+
+.journey-timeline { list-style: none; margin: 0; padding: 0 0 0 1.1em; border-left: 1px solid rgba(255,255,255,0.15); }
+.journey-timeline li { position: relative; padding: 0; margin: 0 0 0.35em 0; }
+.journey-timeline li::before { content: ""; position: absolute; left: calc(-1.1em - 5px); top: 0.75em; width: 9px; height: 9px; border-radius: 50%;
+	background: #1c1f22; border: 1.5px solid rgba(255,255,255,0.35); transition: background 0.3s, border-color 0.3s; }
+.journey-timeline a { display: block; border: 0; padding: 0.35em 0.6em; border-radius: 4px; color: rgba(255,255,255,0.55); transition: background 0.3s, color 0.3s; }
+.journey-timeline a:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.journey-timeline .yr { display: block; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+.journey-timeline .pl { display: block; font-size: 0.9em; line-height: 1.4; }
+.journey-timeline li.visited::before { border-color: #49bf9d; }
+.journey-timeline li.active::before { background: #49bf9d; border-color: #49bf9d; }
+.journey-timeline li.active a { background: rgba(73,191,157,0.12); color: #fff; }
+.journey-timeline li.active .yr { color: #49bf9d; }
+
+.era { scroll-margin-top: 2em; }
+
+/* Tablet / phone: sidebar sits on top of the page, so keep it compact */
+@media screen and (max-width: 980px) {
+	body.journey-page #header { padding: 2.5em 2em; }
+	.journey-map { max-width: 28em; margin-left: auto; margin-right: auto; }
+}
