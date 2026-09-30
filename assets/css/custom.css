@@ -7,7 +7,7 @@
 :root {
 	--text: #1f1f1f;       /* body text (the original site forced black text) */
 	--tag-text: #c0392b;   /* skill tag color (original used red) */
-	--tag-bg: #f4f4f4;
+	--tag-bg: #e8e5de;     /* skill tag background (a shade darker than the page) */
 }
 
 #main { color: var(--text); }
@@ -151,7 +151,7 @@ body.journey-page #header {
 /* Flow diagram */
 .flow { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75em; padding: 0; margin: 0 0 2em 0; counter-reset: flow; }
 .flow-step { position: relative; flex: 1 1 9em; padding: 0.8em 0.9em 0.8em 2.6em; border: 1px solid #ddd; border-radius: 6px;
-	background: #fafafa; line-height: 1.35; counter-increment: flow; margin: 0; }
+	background: #faf9f6; line-height: 1.35; counter-increment: flow; margin: 0; }
 .flow-step::before { content: counter(flow); position: absolute; left: 0.8em; top: 0.85em; width: 1.4em; height: 1.4em; border-radius: 50%;
 	background: #49bf9d; color: #fff; font-size: 0.8em; font-weight: bold; text-align: center; line-height: 1.4em; }
 .flow-step strong { display: block; font-size: 0.95em; }
@@ -167,3 +167,27 @@ body.journey-page #header {
 .roadmap li.next::before { content: ""; border: 2px solid #ccc; box-sizing: border-box; }
 .roadmap li.done { color: #555; }
 .roadmap li.next { color: #888; }
+
+/* ---------- Page background ----------
+   Soft off-white instead of pure white. Change --page-bg to adjust. */
+:root { --page-bg: #eeebe4; }
+body, .poptrox-popup, .poptrox-popup .caption { background: var(--page-bg); }
+
+/* ---------- Buttons (Resume, Activities & Honors, All Projects, GitHub...) ----------
+   The theme's pale border disappears on the off-white page, so give them more contrast. */
+#main .button {
+	border-color: #c9c4b9;
+	background-color: #faf9f6;
+	color: #3a3a3a !important;
+}
+#main .button:hover,
+#main .button:active {
+	border-color: #49bf9d;
+	background-color: rgba(73, 191, 157, 0.08);
+	color: #2f8f73 !important;
+}
+
+/* ---------- Section divider lines ----------
+   The theme's #efefef dividers vanish on the off-white page; darken them slightly. */
+#main > section { border-top-color: #d9d4c9; }
+hr { border-bottom-color: #d9d4c9; }
