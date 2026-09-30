@@ -135,3 +135,35 @@ body.journey-page #header {
 	body.journey-page #header { padding: 2.5em 2em; }
 	.journey-map { max-width: 28em; margin-left: auto; margin-right: auto; }
 }
+
+
+/* ---------- Work-in-progress styles (arctos.html + home page card) ---------- */
+.wip-banner { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em 1em; padding: 0.8em 1em; margin: 0 0 1.5em 0;
+	border-left: 4px solid #e0a100; background: #fff8e1; border-radius: 4px; font-size: 0.9em; color: #6b5200; }
+.wip-badge { display: inline-block; background: #e0a100; color: #fff; font-weight: bold; font-size: 0.75em; letter-spacing: 0.08em;
+	text-transform: uppercase; padding: 0.2em 0.7em; border-radius: 999px; font-style: normal; }
+.wip-badge.small { font-size: 0.65em; margin-right: 0.4em; vertical-align: middle; }
+.phase-status { display: inline-block; font-size: 0.45em; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.08em;
+	padding: 0.25em 0.8em; border-radius: 999px; margin-left: 0.5em; font-weight: bold; }
+.phase-status.done { background: #e3f4ec; color: #1e7a52; }
+.phase-status.active { background: #fff3cd; color: #8a6500; }
+
+/* Flow diagram */
+.flow { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75em; padding: 0; margin: 0 0 2em 0; counter-reset: flow; }
+.flow-step { position: relative; flex: 1 1 9em; padding: 0.8em 0.9em 0.8em 2.6em; border: 1px solid #ddd; border-radius: 6px;
+	background: #fafafa; line-height: 1.35; counter-increment: flow; margin: 0; }
+.flow-step::before { content: counter(flow); position: absolute; left: 0.8em; top: 0.85em; width: 1.4em; height: 1.4em; border-radius: 50%;
+	background: #49bf9d; color: #fff; font-size: 0.8em; font-weight: bold; text-align: center; line-height: 1.4em; }
+.flow-step strong { display: block; font-size: 0.95em; }
+.flow-step span { display: block; font-size: 0.8em; color: #777; }
+
+/* Roadmap checklist */
+.roadmap { list-style: none; padding: 0; margin: 0 0 2em 0; }
+.roadmap li { position: relative; padding: 0.35em 0 0.35em 2em; margin: 0; }
+.roadmap li::before { position: absolute; left: 0; top: 0.35em; width: 1.3em; height: 1.3em; border-radius: 50%; text-align: center;
+	line-height: 1.3em; font-size: 0.85em; font-weight: bold; }
+.roadmap li.done::before { content: "\2713"; background: #49bf9d; color: #fff; }
+.roadmap li.active::before { content: "\2022"; background: #e0a100; color: #fff; }
+.roadmap li.next::before { content: ""; border: 2px solid #ccc; box-sizing: border-box; }
+.roadmap li.done { color: #555; }
+.roadmap li.next { color: #888; }

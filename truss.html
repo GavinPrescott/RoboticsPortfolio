@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Keep the "Design: HTML5 UP" credit in the footer — the license requires it.
+-->
+<html lang="en">
+	<head>
+		<title>Optimized Acrylic Truss | Gavin Prescott</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Gavin Prescott — Robotics &amp; Autonomous Systems M.S. student at Boston University. Projects in mechanical design, fabrication, and embedded systems." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<link rel="icon" href="images/avatar.jpg" />
+	</head>
+	<body class="is-preload">
+
+		<!-- ============================================================
+		     HEADER (left sidebar) — same on every page.
+		     If you change it here, change it in the other .html files too.
+		     Sidebar background photo = images/bg.jpg
+		     ============================================================ -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="image avatar"><img src="images/avatar.jpg" alt="Gavin Prescott" /></a>
+					<h1><strong>Gavin Prescott</strong></h1>
+					<p class="intro-subtitle">
+						Robotics &amp; Autonomous Systems<br />
+						<br />
+						<b>M.S. Robotics &amp; Autonomous Systems</b><br />
+						<i>Boston University &middot; Expected May 2028</i><br />
+						<b>B.A. Anthropology, Minor in Biology</b><br />
+						<i>St. Lawrence University &middot; 2023</i>
+					</p>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+
+					<section class="project-detail">
+
+    <a href="index.html#projects" class="button small">&larr; All Projects</a>
+
+    <!-- ========== TITLE BLOCK ========== -->
+    <p class="project-hero-meta">03 &middot; Structural Analysis &amp; Software &middot; BU EK301</p>
+
+    <header class="major"><h2>Optimized Acrylic Truss</h2></header>
+
+    <p class="lede">Designed, analyzed, and built an acrylic truss using custom MATLAB tools I wrote to predict member
+      forces, buckling, and cost. It held 123.46 oz, placing in the top 5 of roughly 50 teams, and failed at exactly the
+      member my model predicted.</p>
+
+    <div class="tags">
+      <span class="tag">MATLAB</span>
+      <span class="tag">Python</span>
+      <span class="tag">Statics</span>
+      <span class="tag">Structural Analysis</span>
+      <span class="tag">Optimization</span>
+      <span class="tag">GUI Design</span>
+      <span class="tag">Fabrication</span>
+    </div>
+
+    <!-- ========== OVERVIEW ========== -->
+    <h2>Optimized Truss Design</h2>
+    <p class="Step-title">Overview</p>
+    <p>In Engineering Mechanics: Statics (EK301) at Boston University, teams were challenged to design, analyze, and build
+      an acrylic-strip truss that carried the most load for its cost, calculated using a predetermined equation from the
+      design manual. Designs had to follow strict geometric rules: a 26&ndash;30&Prime; total span, joint-to-joint spans
+      between 6&Prime; and 14&Prime;, and a fixed load position. On my team, I built the analysis model, designed the
+      geometry, and constructed the final truss.</p>
+    <p>Our truss supported <strong>123.46 oz</strong>, 18.5% above our predicted 104.17 oz and within our uncertainty
+      bounds. It failed at member m12, exactly the member our model predicted would fail first.</p>
+
+    <!-- ========== ANALYSIS TOOLS ========== -->
+    <h2>Building the Analysis Tools</h2>
+
+    <div class="step">
+      <div class="step-body">
+        <p class="Step-title">Equilibrium Solver</p>
+        <p>I wrote two MATLAB programs for the project over roughly 8&ndash;10 hours. The first, an analysis script, builds
+          the truss's full equilibrium matrix from joint positions and a connection matrix, solving every joint
+          simultaneously for all member forces and support reactions. It then predicts failure using the course's empirical
+          buckling model, <em>P = 37.5&middot;(10/L)&sup2;</em> oz with a &plusmn;10 oz fit uncertainty, to find which
+          compression member buckles first, the truss's maximum load, its cost, and its load-to-cost ratio. Built-in checks
+          reject any truss that isn't statically determinate (<em>M = 2J &minus; 3</em>) or is geometrically unstable.</p>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/truss/member-table.jpg" alt="MATLAB output table listing each member's length, tension or compression state, force, and buckling limit">
+          <figcaption>Solver output: force, state, and buckling limit for every member.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-body">
+        <p class="Step-title">Interactive Truss Builder</p>
+        <p>The second is an interactive truss builder, modeled after the Johns Hopkins truss simulator but designed
+          specifically for our project's rules. You click to place joints and connect members on a snapping grid, set
+          supports and the load, and solve instantly: members color by tension, compression, and critical failure. Every
+          project rule is checked live. Members outside the 6&ndash;14&Prime; range turn red, and the status panel flags
+          violations of the 26&ndash;30&Prime; span, the load position window, the 120&Prime; material budget, crossing
+          members, and more. Finished designs export directly into the analysis script.</p>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/truss/python-builder.png" alt="Truss builder app showing a small truss colored by tension and compression with a results dashboard">
+          <figcaption>Python version of my interactive truss builder, shown on a validation truss.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p class="Step-title">Validation</p>
+    <p>I also built a Python version for faster iteration, but moved back to MATLAB since it was a project requirement. To
+      avoid confirmation bias, a teammate verified the program against independent hand calculations on three test trusses
+      of increasing complexity, from 3 to 21 members, before we trusted it. A teammate then used the builder to design and
+      optimize our final truss.</p>
+
+    <!-- ========== DESIGN ========== -->
+    <h2>Designing for Load-to-Cost</h2>
+
+    <div class="step">
+      <div class="step-body">
+        <p>We started from a Pratt truss and refined it from there. Because buckling strength falls with the square of
+          member length, our strategy was to shorten compression members and let tension members, which don't buckle, run
+          longer. Once the model identified a critical member, we adjusted the geometry to reduce the load it carried, then
+          re-solved to find the next weakest link, repeating until the design converged.</p>
+        <p>We originally optimized for maximum load, but shortly before the deadline the project's goal shifted to
+          load-to-cost ratio. Since cost was calculated from the number of joints plus total member length, every added
+          joint and inch of material now had to earn its place. Our final design used 8 joints and 13 members across a
+          30&Prime; span, with 105&Prime; of material at a cost of $185, and a predicted capacity of 104.17 oz &plusmn;
+          22.50 oz, with member m12 as the critical member.</p>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/truss/matlab-final-design.png" alt="MATLAB plot of the final 13-member truss with the critical member highlighted">
+          <figcaption>Final design in MATLAB: 104.2 oz predicted, critical member m12.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ========== BUILD & TEST ========== -->
+    <h2>Building &amp; Testing</h2>
+    <p>We cut each member by scoring the acrylic with an X-Acto knife and snapping it cleanly along the line, then sanded
+      the corners to take off sharp edges. To get the tape joints to hold, we cleaned every piece with rubbing alcohol and
+      let it dry before assembly, since a clean surface gave the tape a far stronger bond. The build itself came together
+      quickly. Before testing, the truss was passed around the room and decorated by our team and classmates with
+      good-luck charms and words of encouragement.</p>
+    <p>In testing, the truss first held the required 32 oz baseline for 60 seconds, then weight was added gradually until
+      it showed the level of visible bowing the TA defined as failure. It reached that point at <strong>123.46 oz
+      (3,500 gf)</strong>, 18.5% above our 104.17 oz prediction and within our uncertainty bounds, with member m12 bowing
+      exactly as our model predicted. That placed us in the <strong>top 5 of roughly 50 teams</strong> for load capacity,
+      with a final load-to-cost ratio of 0.67 oz/$. After the official test, we kept adding weight, and the truss still
+      didn't snap.</p>
+    <p>We attribute the margin above prediction largely to the joints: the rules allowed unlimited duct tape, and our
+      well-bonded joints made the structure stiffer than the pin-jointed model assumes.</p>
+
+    <figure class="figure-showcase">
+      <div class="showcase-frame">
+        <img class="showcase-bg" src="images/projects/truss/truss-test.jpg" alt="" aria-hidden="true">
+        <img class="showcase-fg" src="images/projects/truss/truss-test.jpg" alt="The decorated acrylic truss spanning two supports with weight hanging from it">
+      </div>
+      <figcaption>After the official test: still holding with extra weight added.</figcaption>
+    </figure>
+
+    <!-- ========== OUTCOMES ========== -->
+    <h2>Outcomes</h2>
+    <p><strong>Top 5 of ~50 teams: 123.46 oz supported, with the failure point predicted exactly.</strong></p>
+    <ul>
+      <li>Built an interactive MATLAB truss builder with live enforcement of every project rule.</li>
+      <li>Wrote an equilibrium-matrix solver predicting member forces, buckling, cost, and load-to-cost.</li>
+      <li>Validated the software against independent hand calculations on three test trusses.</li>
+      <li>Exceeded predicted capacity by 18.5% and correctly identified the critical member.</li>
+    </ul>
+
+    <p class="Step-title">What I'd Do Differently</p>
+    <p>I'd add supports beneath the fixed joints, the approach the top load-to-cost team used.</p>
+
+    <p class="Step-title">Takeaway</p>
+    <p>Building my own tool showed me how much a coding environment can do for design: it let us find optimal designs
+      faster and saved a huge amount of time compared with working each iteration by hand.</p>
+
+    <!-- ========== SPEC BLOCK ========== -->
+    <dl class="spec-list">
+      <div>
+        <dt>Context</dt>
+        <dd>BU EK301 &middot; Engineering Mechanics: Statics</dd>
+      </div>
+      <div>
+        <dt>Tools Used</dt>
+        <dd>X-Acto knife, sandpaper, duct tape</dd>
+      </div>
+      <div>
+        <dt>Software</dt>
+        <dd>MATLAB, Python</dd>
+      </div>
+      <div>
+        <dt>Year</dt>
+        <dd>Spring 2026</dd>
+      </div>
+    </dl>
+
+    <ul class="actions">
+      <li><a href="https://github.com/GavinPrescott/RoboticsPortfolio/tree/main/code/ek301-truss" target="_blank" rel="noopener" class="button">View Code on GitHub</a></li>
+    </ul>
+
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/gavinprescott" target="_blank" rel="noopener" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/gavin-prescott/" target="_blank" rel="noopener" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:Gavin.j.prescott@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Gavin Prescott</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

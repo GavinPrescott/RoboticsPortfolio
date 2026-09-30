@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Keep the "Design: HTML5 UP" credit in the footer — the license requires it.
+-->
+<html lang="en">
+	<head>
+		<title>ARCTOS Robotic Arm | Gavin Prescott</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Gavin Prescott — Robotics &amp; Autonomous Systems M.S. student at Boston University. Projects in mechanical design, fabrication, and embedded systems." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<link rel="icon" href="images/avatar.jpg" />
+	</head>
+	<body class="is-preload">
+
+		<!-- ============================================================
+		     HEADER (left sidebar) — same on every page.
+		     If you change it here, change it in the other .html files too.
+		     Sidebar background photo = images/bg.jpg
+		     ============================================================ -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="image avatar"><img src="images/avatar.jpg" alt="Gavin Prescott" /></a>
+					<h1><strong>Gavin Prescott</strong></h1>
+					<p class="intro-subtitle">
+						Robotics &amp; Autonomous Systems<br />
+						<br />
+						<b>M.S. Robotics &amp; Autonomous Systems</b><br />
+						<i>Boston University &middot; Expected May 2028</i><br />
+						<b>B.A. Anthropology, Minor in Biology</b><br />
+						<i>St. Lawrence University &middot; 2023</i>
+					</p>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+
+					<section class="project-detail">
+
+    <a href="index.html#projects" class="button small">&larr; All Projects</a>
+
+    <!-- ========== TITLE BLOCK ========== -->
+    <p class="project-hero-meta">04 &middot; Robotics &amp; Automation &middot; BU Robotics Club</p>
+
+    <header class="major"><h2>ARCTOS Robotic Arm: Automated Inventory System</h2></header>
+
+    <!-- Update the date and status line whenever you add progress -->
+    <div class="wip-banner">
+      <span class="wip-badge">Work in Progress</span>
+      <span>Last updated September 2026 &middot; Target prototype: March 2027</span>
+    </div>
+
+    <p class="lede">Building an open-source, 3D-printed 6-axis robotic arm and turning it into an automated inventory
+      system, modeled on real warehouse, inventory, and palletizing robots. I'm leading the 25-person BU Robotics Club
+      team behind it.</p>
+
+    <div class="tags">
+      <span class="tag">Robotics</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">Stepper Motors</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">AprilTags</span>
+      <span class="tag">Raspberry Pi</span>
+      <span class="tag">Team Leadership</span>
+    </div>
+
+    <!-- ========== OVERVIEW ========== -->
+    <h2>Overview</h2>
+    <p>The project started with a focused goal: build the open-source <a href="https://arctosrobotics.com/docs/#home" target="_blank" rel="noopener">ARCTOS</a>
+      robotic arm, a 3D-printable 6-axis arm with roughly 600&nbsp;mm of reach and a 1&nbsp;kg payload. Once the arm was
+      built and moving, the scope grew significantly. It is now one of the BU Robotics Club's leading projects, aimed at
+      modeling the kinds of problems robots solve in industry: warehouse picking, inventory management, and palletizing.</p>
+
+    <!-- ========== PHASE 1 ========== -->
+    <h2>Phase 1: Building the Arm <span class="phase-status done">Complete</span></h2>
+
+    <div class="step">
+      <div class="step-body">
+        <p>We printed and assembled the arm following the ARCTOS design, then wired the stepper motors into a circuit and ran
+          them to confirm every joint could move. The arm is currently built to the stock ARCTOS specification, and our
+          mechanical team is now working on upgrades.</p>
+        <figure>
+          <img src="images/projects/arctos/arctos-render.jpg" alt="CAD render of the ARCTOS 6-axis robotic arm">
+          <figcaption>The ARCTOS design we're building. Image: ARCTOS Robotics.</figcaption>
+        </figure>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/arctos/arm-build.jpg" alt="The club's assembled, multicolored 3D-printed ARCTOS arm on a lab bench">
+          <figcaption>Our assembled arm in the lab.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ========== PHASE 2 ========== -->
+    <h2>Phase 2: Automated Inventory System <span class="phase-status active">In Progress</span></h2>
+
+    <p class="Step-title">Where It Starts</p>
+    <p>The club already runs an inventory system on a Raspberry Pi connected to a label printer and a Notion database,
+      built and thoroughly documented by a former club member. A user photographs an item and enters its details (name,
+      custom item number, quantity, weight, price), and the system prints a label and logs the item. From there, a person
+      applies the sticker and stores the item by hand. We plan to move the system onto a website so members can request
+      parts easily.</p>
+
+    <p class="Step-title">Where It's Going</p>
+    <p>We're automating the storage and retrieval. A user will enter an item's information on a tablet; an ARCTOS arm
+      mounted on a linear rail will pick the item and place it into a shelving storage system we're developing, then
+      retrieve it again on request. Every deposit and retrieval will be logged automatically, keeping the inventory
+      accurate without manual bookkeeping.</p>
+
+    <!-- System flow diagram. Each .flow-step is one box; edit the text to change it. -->
+    <ol class="flow" aria-label="Planned system flow">
+      <li class="flow-step"><strong>Tablet</strong><span>Enter item info</span></li>
+      <li class="flow-step"><strong>Inventory System</strong><span>Raspberry Pi + Notion log</span></li>
+      <li class="flow-step"><strong>Label &amp; Scan</strong><span>QR code + AprilTags</span></li>
+      <li class="flow-step"><strong>ARCTOS Arm</strong><span>Picks item on linear rail</span></li>
+      <li class="flow-step"><strong>Shelving</strong><span>Store &amp; retrieve on request</span></li>
+      <li class="flow-step"><strong>Logged</strong><span>Every deposit &amp; retrieval</span></li>
+    </ol>
+
+    <p class="Step-title">System Design</p>
+    <ul>
+      <li><strong>Control:</strong> a ThinkPad laptop will process commands and drive the arm, with magnetic encoders
+        measuring each joint's angle for position feedback.</li>
+      <li><strong>Vision:</strong> the arm will locate items using computer vision, reading AprilTags and scanning QR
+        codes on the labels.</li>
+      <li><strong>End effector:</strong> the team is designing a custom tool-changer base that mounts to the arm and
+        serves as the foundation for every gripper we build.</li>
+      <li><strong>Mechanical:</strong> upgrades to the stock arm, a linear rail, and the shelving storage system.</li>
+    </ul>
+
+    <!-- ========== TEAM ========== -->
+    <h2>Leading the Team</h2>
+    <p>The project is run by a 25-person team split into mechanical, electrical, software, computer vision, and end
+      effector subteams. I'm currently leading the full team until we bring on a dedicated project lead. A major focus is
+      building a learning pipeline, so members who join with little experience can grow into real robotics work and keep
+      the project moving as people come and go.</p>
+
+    <!-- ========== ROADMAP ========== -->
+    <h2>Roadmap</h2>
+    <!-- To update: change a line's class to "done", "active", or "next". -->
+    <ul class="roadmap">
+      <li class="done">Build the ARCTOS arm (stock configuration)</li>
+      <li class="done">Wire and run the stepper motors</li>
+      <li class="done">Raspberry Pi label and inventory system (existing)</li>
+      <li class="active">Mechanical upgrades to the arm</li>
+      <li class="active">Tool-changer base for the end effector</li>
+      <li class="active">Magnetic encoders for joint position</li>
+      <li class="active">Computer vision: AprilTags and QR scanning</li>
+      <li class="next">Arm control software on the ThinkPad</li>
+      <li class="next">Linear rail and shelving storage system</li>
+      <li class="next">Tablet interface and website for part requests</li>
+      <li class="next">Full pick, store, and retrieve demo with logging</li>
+      <li class="next">Finished prototype: March 2027</li>
+    </ul>
+
+    <!-- ========== SPEC BLOCK ========== -->
+    <dl class="spec-list">
+      <div>
+        <dt>Context</dt>
+        <dd>BU Robotics Club</dd>
+      </div>
+      <div>
+        <dt>My Role</dt>
+        <dd>Team lead, 25 members</dd>
+      </div>
+      <div>
+        <dt>Hardware</dt>
+        <dd>ARCTOS arm, stepper motors, Raspberry Pi, ThinkPad</dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd>In progress &middot; target March 2027</dd>
+      </div>
+    </dl>
+
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/gavinprescott" target="_blank" rel="noopener" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/gavin-prescott/" target="_blank" rel="noopener" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:Gavin.j.prescott@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Gavin Prescott</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
