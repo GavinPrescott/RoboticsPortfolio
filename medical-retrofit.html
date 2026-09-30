@@ -56,14 +56,17 @@
       hardware, are omitted at the company's request.</p>
 
     <div class="tags">
-      <span class="tag placeholder">[STM32]</span>
-      <span class="tag placeholder">[Soldering]</span>
-      <span class="tag placeholder">[CAD]</span>
-      <span class="tag placeholder">[Prototyping]</span>
+      <span class="tag">STM32</span>
+      <span class="tag">Micro-soldering</span>
+      <span class="tag">Logic Analyzer</span>
+      <span class="tag">CAD</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">EMI Mitigation</span>
+      <span class="tag">Prototyping</span>
     </div>
 
     <!-- ========== OVERVIEW ========== -->
-    <h2>Reverse Engineering</h2>
+    <h2>The Challenge</h2>
     <p class="Step-title">Overview</p>
     <!-- Notes from your old About page draft: three STM32 boards, F-shaped bracket you designed,
          rewired internals, ferrite cores for EMI, sensor wiring read with a logic analyzer. -->
@@ -78,61 +81,150 @@
     <!-- ---------- COPY THIS BLOCK for a step with ONE image ---------- -->
     <div class="step">
       <div class="step-body">
-        <p class="Step-title"><span class="placeholder">[STEP TITLE]</span></p>
-        <p>Led the meticulous teardown and analysis of complex, legacy medical hardware 
-          to map system architecture and component interactions. Because the equipment was
-           both scarce and highly sensitive, this phase required a rigorous, zero-fault 
-           approach to ensure no physical or functional degradation of the original hardware.
-            Successfully decoded the machine’s internal operations to establish a reliable baseline
-             for a modern hardware retrofit.</p>
+        <p class="Step-title">Mechanical Deconstruction and Mapping</p>
+        <p>First was the meticulous teardown and analysis of the legacy medical hardware. 
+          Because the equipment was both scarce and highly sensitive, this phase required a rigorous
+          approach to ensure no physical or functional damage of the original hardware. After taking it apart I was able
+          to analyze some of the internal systems and with the help of the machine shop owner able to relate them to other hardware,
+          which made the process a lot easier. I was able to map the system architecture and mark what component interactions
+          I needed to keep track of. Through this I could find where to pull power, where to connect wires for analysis, 
+          and where I could place the boards
+        </p>
       </div>
       <div class="step-media">
         <figure>
-          <img src="images/placeholder.svg" alt="[describe the photo]">
-          <figcaption><span class="placeholder">[CAPTION — delete this line if you don't want one]</span></figcaption>
+          <img src="images/projects/medical-retrofit/soldering.jpg" alt="Gavin precision soldering a small circuit board">
         </figure>
       </div>
     </div>
     <!-- ---------------------- end of one-image step ---------------------- -->
 
-    <!-- ---------- COPY THIS BLOCK for a step with TWO+ images ----------
-         Note the extra "step-multi" class — it narrows the image column so
-         stacked photos don't tower over a short paragraph. -->
-    <div class="step step-multi">
+    <!-- ---------- Text-only step ---------- -->
+    <p class="Step-title">Powering the New Hardware</p>
+    <p>Rather than adding a separate power source, I powered the new boards from the machine itself. Following the
+      machine's wall plug inward led me to its internal power supply; by looking up the supply's model online, I identified
+      two wires I could safely draw power from. The supply ran at 12&nbsp;V, while the STM boards needed 5&nbsp;V, so the
+      machine shop owner built a compact step-down converter from a repurposed wall adapter, a roughly $3 part. I routed
+      its output to a single USB power hub that fed all three boards, then verified a steady 5&nbsp;V on test leads with a
+      multimeter before connecting any hardware.</p>
+
+    <!-- ========== ELECTRICAL INTEGRATION ========== -->
+    <h2>Electrical Integration</h2>
+
+    <div class="step">
       <div class="step-body">
-        <p class="Step-title"><span class="placeholder">[STEP TITLE]</span></p>
-        <p><span class="placeholder">[PLACEHOLDER]</span></p>
+        <p class="Step-title">Solder Points &amp; Removable Harnesses</p>
+        <p>The machine was divided into three functional sections, each paired with its own STM board. Connecting to them
+          meant soldering onto micro test points, pads small enough that soldering them is generally not recommended without
+          specialized equipment. Working under magnification with flux, I soldered 24&nbsp;AWG leads, trimming away half of
+          each wire's strands so it would seat on the tiny pads. It took patience: a few lifted pads and many redos before
+          every joint was solid.</p>
+        <p>Each set of leads terminated in a removable connector, circular 4-pin aviation-style connectors sourced from the
+          shop's aircraft parts inventory, plus a Molex connector at the motherboard. Any STM board can be unplugged and
+          pulled for maintenance without desoldering. Inside the housing, wiring was secured using the machine's existing
+          screw holes and adhesive tie mounts, with zip ties keeping every run taut and clear of moving or hot components.</p>
       </div>
       <div class="step-media">
         <figure>
-          <img src="images/placeholder.svg" alt="[describe the photo]">
-        </figure>
-        <figure>
-          <img src="images/placeholder.svg" alt="[describe the photo]">
+          <img src="images/projects/medical-retrofit/micro-solder.jpg" alt="Fine-gauge wires micro-soldered to test points on the original control board">
+          <figcaption>Leads micro-soldered to the original board. Identifying markings blurred.</figcaption>
         </figure>
       </div>
     </div>
-    <!-- --------------------- end of multi-image step --------------------- -->
 
-    <!-- ========== OUTCOMES ========== -->
+    <p class="Step-title">Signal Analysis</p>
+    <p>The same connection points served a second purpose: capturing the machine's internal communication. Using a Saleae
+      Logic 2 analyzer, I recorded I&sup2;C and serial traffic while the machine ran, and a serial encoder let us observe how
+      the STM board code interacted with the original electronics. My role was to run the capture sessions and validate
+      that each one was clean and complete before sending it to the third-party software team, whose analysis of that data
+      directly shaped firmware development.</p>
+
+    <p class="Step-title">External Programming Port</p>
+    <p>To make updates practical, I drilled into the machine's housing and mounted a sealed aviation connector as an external
+      programming port. It connected to the internal powered USB hub, giving access to all three boards through a single
+      port, so new firmware could be flashed without opening the machine or removing any hardware. Our team used it for
+      every software update during development.</p>
+
+    <!-- ========== MECHANICAL DESIGN ========== -->
+    <h2>Mechanical Design</h2>
+
     <div class="step">
       <div class="step-body">
-        <h2>Outcomes</h2>
-        <p><strong><span class="placeholder">[ONE-LINE RESULT]</span></strong></p>
+        <p class="Step-title">Designing the F-Bracket</p>
+        <p>The three STM boards had to fit inside the machine's tight internal clearances, so I designed a custom F-shaped
+          bracket in Fusion 360 to hold them. The design had to satisfy several constraints at once: fit the available space
+          precisely, remain easily removable for maintenance, withstand the heat inside the machine, and stay rigid with
+          little to no sag.</p>
+        <p>I measured the space with calipers, then built a cardboard scrap model to confirm the fit before printing. The
+          design went through eight iterations before it fit reliably. Rather than adding new mounting points to the machine,
+          I drilled screw holes into the back of the bracket to match existing screws inside the housing, and sourced longer
+          screws to account for the bracket's added height, so it installs and removes without any permanent modification.
+          The boards mount to the bracket on standoffs bonded to its surface.</p>
+        <p>After researching filament options against these requirements, I printed the bracket in PETG, which offered the
+          heat resistance and stiffness we needed. Our printer struggled with bed adhesion, so a very large brim was required
+          to get a clean print.</p>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/medical-retrofit/f-bracket.png" alt="3D model of the F-shaped PETG mounting bracket">
+          <figcaption>Final F-bracket design, modeled in Fusion 360.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p class="Step-title">Shielding from Interference</p>
+    <p>During testing, parts of the build would only function when a large ground source was placed near exposed wiring,
+      a sign that electromagnetic interference from the machine's high-voltage components was disrupting the signals. After
+      diagnosing the issue with the machine shop owner, I added ferrite cores and replaced vulnerable runs with shielded
+      wiring, which resolved the interference.</p>
+
+    <!-- ========== CUSTOM INTERFACE PCB ========== -->
+    <h2>Custom Interface PCB</h2>
+
+    <div class="step">
+      <div class="step-body">
+        <p>One of the machine's user-facing components needed to be replaced with a custom board that the new electronics
+          could work with. Before designing anything, we tore down the subsystem it connected to and mapped every connection.
+          The machine shop owner designed the replacement PCB in KiCad and ordered it through PCBWay. It plugs directly into
+          the machine's original connector slot, so the change is invisible from the outside. I hand-soldered the headers and
+          wiring that route its signals to the STM boards, then validated the complete assembly through full functional
+          testing.</p>
+      </div>
+      <div class="step-media">
+        <figure>
+          <img src="images/projects/medical-retrofit/interface-pcb.jpg" alt="Custom edge-connector PCB with hand-soldered headers and wiring">
+          <figcaption>Custom interface PCB with hand-soldered headers. Identifying markings blurred.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ========== INSTALLATION, DOCUMENTATION ========== -->
+    <h2>Installation &amp; Handoff</h2>
+
+    <p class="Step-title">Installation &amp; Testing</p>
+    <p>With every component built, I installed the bracket, harnesses, power supply, and interface PCB into the machine and
+      ran full functional tests to confirm the integrated system operated correctly.</p>
+
+    <p class="Step-title">Documentation for Handoff</p>
+    <p>My internship ended before the project did, so I made sure it wouldn't stall when I left. I wrote a complete handoff
+      package: a bill of materials, the bracket's print files, and step-by-step instructions with annotated photos marking
+      each connection and solder point. Anyone assigned to the project after me could pick it up and continue, or replicate
+      the retrofit on another machine, without having to rediscover what I'd done.</p>
+
+    <p class="Step-title">What I'd Do Differently</p>
+    <p>I'd document as I go. I assembled the BOM and instructions largely at the end, and by then some early steps were hard
+      to recall exactly. Now I keep a running build log and BOM from day one.</p>
+
+    <!-- ========== OUTCOMES ========== -->
+    <h2>Outcomes</h2>
+        <p><strong>A self-contained, serviceable three-board retrofit, fully documented for handoff.</strong></p>
         <ul>
           <li>Retrofitted a legacy system by integrating STM microcontroller boards: chip removal, soldering, and serial encoder implementation.</li>
           <li>Designed a CAD bracket tray enabling efficient integration of 3 STM boards within a constrained space.</li>
           <li>Coordinated with third-party software developers to integrate updated code into existing hardware.</li>
-          
+          <li>Designed a removable, PETG-printed mounting bracket through eight iterations, installed with no permanent modification to the machine.</li>
+          <li>Diagnosed and resolved EMI issues using ferrite cores and shielded wiring.</li>
         </ul>
-      </div>
-      <div class="step-media">
-        <figure>
-          <img src="images/projects/medical-retrofit/thumb.jpg" alt="Opened applicator showing the integrated STM boards and rewired internals">
-          <figcaption><span class="placeholder">[CAPTION]</span></figcaption>
-        </figure>
-      </div>
-    </div>
 
     <!-- ========== SPEC BLOCK ========== -->
     <dl class="spec-list">
@@ -142,15 +234,15 @@
       </div>
       <div>
         <dt>Tools Used</dt>
-        <dd><span class="placeholder">[MACHINES]</span></dd>
+        <dd>Soldering station with magnification, multimeter, Saleae Logic 2, 3D printer (PETG)</dd>
       </div>
       <div>
         <dt>Software</dt>
-        <dd><span class="placeholder">[SOFTWARE]</span></dd>
+        <dd>Fusion 360, Saleae Logic 2</dd>
       </div>
       <div>
         <dt>Year</dt>
-        <dd><span class="placeholder">[YEAR]</span></dd>
+        <dd>2024&ndash;2025</dd>
       </div>
     </dl>
 
